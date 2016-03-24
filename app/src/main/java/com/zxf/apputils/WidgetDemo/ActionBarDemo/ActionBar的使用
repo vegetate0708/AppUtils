@@ -1,0 +1,48 @@
+1:ActionBar位于传统标题的位置，也就是现实屏幕的顶部。
+  ActionBar可显示应用的图标和Activity标题--也就是前面应用程序的顶部显的内容，除此之外，ActionBar的右边还可以显示活动项（Action Item）.
+  归纳起来，ActionBar提供了如下功能：
+  1> 显示选项菜单的菜单项(将菜单项显示成Action Item)。
+  2> 使用程序图标作为返回Home主屏或向上的导航操作。
+  3> 提供交互式View作为Action View
+  4> 提供基于Tab的导航方式，可用于切换多个Fragment。
+  5> 提供基于下拉的导航方式。
+2：Android 3.0版本已经默认启用了ActionBar，如果希望关闭ActionBar,可以设置该应用的主题为Xxx.NoActionBar,
+   例外如下配置片段：
+   <application android:icon="@drawable/ic_launcher"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:label="@string/app_name">
+            ...
+   </application>
+3:实际项目中，通常推荐使用代码来控制ActionBar的显示、隐藏，ActionBar提供了如下方法来控制显示、隐藏。
+   show();显示ActionBar
+   hide()：隐藏ActionBar
+4:ActionBar可以将选项菜单显示成ActionItem
+  在android 3.0开始，MenuItem新增加了如下方法。
+  setShowAsActionBar(int actionEnum):该方法设置是否将该菜单项显示在ActionBar上，作为ActionItem
+  该方法支持如下参数值
+  SHOW_AS_ACTION_ALWAYS:总是将该MenuItem显示在ActionBar上
+  SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW:将该Action View折叠成普通菜单项。
+  SHOW_AS_ACTION_IF_ROOM:当ActionBar位置足够时才显示MenuItem。
+  SHOW_AS_ACTION_NEVER:不将该MenuItem显示ActionBar上。
+  SHOW_AS_ACTION_WITH_TEXT:将该MenuItem显示在ActionBar上，并显示该菜单项的文本.
+  实际项目推荐使用XML资源文件来定义菜单,因此android允许在XML菜单资源文件中为<item.../>元素指定如下属性
+     android:showAsAction
+5:获取到ActionBar之后可以调用以下方法：
+  setDisplayHomeAsUpEnabled(boolean showHomeAsUp)：设置是否将应用程序图标转变为可点击的图标，并在图标上添加一个向左的箭头
+  setDisplayOptions(int options):通过传入int类型常量来控制该ActionBar的显示选项。
+  setDisplayShowHomeEnable(boolean showHome):设置是否显示应用程序的图标
+  setHomeButtonEnabled(boolean enabled):设置是否将应用程序图标转变成可点击的按钮。
+6:ActionBar上除了可以显示普通的ActionItem之外，还可以显示普通的UI组件,为了在ActionBar上添加Action View,可以用如下两种方式
+  1> 定义Action Item时使用android:actionViewClass属性指定Action View的实现类。
+  2> 定义Action Item时使用android:actionLayout 属性指定Action View对应的视图资源
+7：使用ActionBar实现Tab导航
+  ActionBar还有常用的功能：实现Tab导航
+  ActionBar在顶端生成多个Tab标签，当用户点击某个Tab标签时，系统根据用户点击事件导航指定Tab页面
+  1> 为了使用ActionBar的setNavigationMode(ActionBar.NAVIGATION_MODE_TABS)方法设置使用Tab导航方式
+  2> 调用ActionBar的addTab()方法添加多个Tab标签,并为每个Tab标签添加事件监听器
+8:使用ActionBar实现下拉式导航
+  下拉式导航的ActionBar在顶端生成下拉式列表框，当用户单击某个列表项时，系统根据用户单击事件导航到指定的Fragment
+  1> 调用ActionBar的actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST)方法设置使用下拉列表的导航方式
+  2> 调用ActionBar的setLIstNavigationCallbacks(SpinnerAdapter adapter,ActionBar.OnNavigationListener callback)()添加多个列表项，
+     并为每个列表项设置事件监听器
+

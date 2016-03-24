@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/search"
+    android:title="menu菜单"
+    android:orderInCategory="100"
+    android:showAsAction="always"
+    android:actionViewClass="android.widget.SearchView"/>  <!--显示一个搜索-->
+ <item
+        android:id="@+id/progress"
+        android:title="menu菜单"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:actionLayout="@layout/clock"/>  <!--显示一个时钟-->
+
+</menu>

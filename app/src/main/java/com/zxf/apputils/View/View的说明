@@ -1,0 +1,25 @@
+1：view有以下四个方法：
+    view.getLeft()      得到的是当前view离父容器左边的距离
+    view.getRight()     得到的是当前view离父容器右边的距离
+    view.getTop()       得到的是当前view离父容器顶部的距离
+    view.getBottom      得到的是当前view离父容器底部的距离
+   由以上四个参数可以计算出view的宽高；   宽度  width=view.getRight() - view.getLeft();  高度  height = view.getBottom() - view.getTop();
+   而 view的还有另外两个方法：
+       view.getTranslationX();  v.getTranslationY(); 这两个方法分别是VIew左上角相对于父容器的偏移量。
+   在MotionEvent中有两个方法：
+       event.getRawX()/event.getRawY() ; 这个返回的是事件相对于手机屏幕左上角的x和y坐标 :
+       event.getX()/event.getY()         这两个方法分别返回的是相对于当前View的左上角x和y坐标。
+2：速度追踪器的使用；
+   VelocityTracker：速度追踪，用于追踪手指在滑动过程中的速度，包括水平和竖直方向的速度，他的使用过程很容易：
+     首先，在View的onTouchEvent方法中追踪当前单击事件的速度：
+        VelocityTracker velocityTracker=VelocityTracker.obtain();
+        velocityTracker.addMovement(event);
+     接着，我们想知道当前的滑动速度时，这个时候可以采用如下方式来获得当前速度：
+        velocityTracker.computeCurrentVelocity(1000);
+        int xVel= (int) velocityTracker.getXVelocity();
+        int yVel= (int) velocityTracker.getYVelocity();
+     获取速度之前必须先计算速度，在使用getXVelocity()或者getXVelocity()方法之前必须要调用computeCurrentVelocity方法，
+     里面的参数是时间间隔为1000ms，在1s内，手指在水平方向从左向右滑动100像素，那么水平速度就是100，当从右往左移动时，水   平速度就是负数，如果参数为100，那么得到的速度就是10像素/每100ms,即水平速度就是10
+     最后，在不使用它的时候需要调用clear方法来重置并回收内存；
+         velocityTracker.clear();
+         velocityTracker.recycle();
