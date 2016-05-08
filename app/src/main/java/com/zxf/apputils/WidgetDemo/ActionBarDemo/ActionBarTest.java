@@ -59,7 +59,7 @@ public class ActionBarTest extends Activity implements ActionBar.TabListener, Ac
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.isCheckable()){
-            item.setCheckable(true);
+            item.setCheckable(true);     
         }
         //判断单击的是哪个菜单项，并有针对性的做出响应
         switch (item.getItemId()){
