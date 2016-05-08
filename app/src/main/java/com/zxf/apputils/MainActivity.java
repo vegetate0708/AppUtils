@@ -11,6 +11,7 @@ import com.zxf.apputils.IPCDemo.IPCActivity;
 import com.zxf.apputils.WidgetDemo.ActionBarDemo.ActionBarTest;
 import com.zxf.apputils.WidgetDemo.RecycleDemo.RecycleDemo;
 import com.zxf.apputils.SMSAndPhoneUtils.PhoneUtils;
+import com.zxf.apputils.WidgetDemo.UserDefinedDemo.LockDemo;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -27,6 +28,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         bt_recycle.setOnClickListener(this);
         Button bt_actionBar= (Button) findViewById(R.id.bt_actionBarDemo);
         bt_actionBar.setOnClickListener(this);
+        Button bt_LockDemo= (Button) findViewById(R.id.bt_LockDemo);
+        bt_LockDemo.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +49,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.bt_actionBarDemo:
                 Intent actionBar =new Intent(MainActivity.this, ActionBarTest.class);
                 startActivity(actionBar);
+                break;
+            case R.id.bt_LockDemo:
+                Intent lock =new Intent(MainActivity.this, LockDemo.class);
+                startActivity(lock);
                 break;
         }
     }
