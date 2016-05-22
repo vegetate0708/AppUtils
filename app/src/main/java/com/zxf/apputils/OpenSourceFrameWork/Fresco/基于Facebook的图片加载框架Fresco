@@ -1,0 +1,45 @@
+Fresco是基于控件级别的
+ <1> 如果你仅仅是想简单下载一张网络图片，在下载完成之前，显示一张占位图，那么简单使用 SimpleDraweeView 即可。
+     为了下载网络图片，请确保在 AndroidManifest.xml 中有以下权限：
+     <uses-permission android:name="android.permission.INTERNET"/>
+     在 Application 初始化时，在应用调用 setContentView() 之前，进行初始化：
+       Fresco.initialize(context);
+     在xml布局文件中, 加入命名空间：
+     <!-- 其他元素 -->
+     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto">
+     加入SimpleDraweeView:
+     <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/my_image_view"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        fresco:placeholderImage="@drawable/my_drawable"
+     />
+     开始加载图片
+       Uri uri = Uri.parse("https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/fresco-logo.png");
+       SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
+       draweeView.setImageURI(uri);
+       剩下的，Fresco会替你完成:
+       显示占位图直到加载完成；
+       下载图片；
+       缓存图片；
+       图片不再显示时，从内存中移除；
+       等等等等
+ <2> Fresco的原理是，设计了一个ImagePipeline的概念，它负责先后检查内存、磁盘文件，如果没有再老老实实从网络下载图片，
+     可以像配置ImageLoader那样配置Fresco中的Image Pipeline，使用ImagePipelineConfig来做这个事情。
+       Fresco有三个线程池，其中三个线程用于网络下载图片，2个线程用于磁盘文件的读写，还有两个线程用于CPU相关操作，
+     比如图片解码、转换，以及放在后台执行的一些费时操作
+ <3>Fresco的三层缓存概念，这才是Fresco最核心的技术，他比其他图片SDK吃内存小，就在于这个缓存设计
+    第一层:Bitmap缓存
+         1：在Android5.0系统中，考虑到内存管理有了很大改进，所以Bitmap缓存位于java堆（heap）中
+         2：而在android 4.x和更低的系统，Bitmap缓存位于ashmem中，而不是位于java的堆（heap）中.这意味着
+            图片的创建和回收不会引发过多的GC，从而让app运行的更快。当App切换到后台时，Bitmap缓存会被清空。
+    第二层：内存缓存
+         内存缓存中存储了图片的原始压缩格式。从内存缓存中取出的图片，在显示前必须先解码。
+         存缓存也会被清空。
+    第三层：磁盘缓存
+         磁盘缓存，即本地存储。磁盘缓存中存储的也是图片的原始压缩格式。在使用前先解码，
+         在App切换到后台时，磁盘缓存不会丢失，即使关机也不会。
+ <4>
+

@@ -40,4 +40,10 @@
         android:layout_height="wrap_content"
         android:text="LockDEMO"
         android:layout_below="@id/bt_actionBarDemo"/>
+    <Button
+        android:id="@+id/bt_FrescoDemo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FrescoDEMO"
+        android:layout_below="@id/bt_LockDemo"/>
 </android.percent.support.PercentRelativeLayout>

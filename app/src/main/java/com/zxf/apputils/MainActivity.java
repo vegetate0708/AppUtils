@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.zxf.apputils.IPCDemo.IPCActivity;
+import com.zxf.apputils.OpenSourceFrameWork.Fresco.FrescoActivity;
 import com.zxf.apputils.WidgetDemo.ActionBarDemo.ActionBarTest;
 import com.zxf.apputils.WidgetDemo.RecycleDemo.RecycleDemo;
 import com.zxf.apputils.SMSAndPhoneUtils.PhoneUtils;
@@ -30,6 +31,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         bt_actionBar.setOnClickListener(this);
         Button bt_LockDemo= (Button) findViewById(R.id.bt_LockDemo);
         bt_LockDemo.setOnClickListener(this);
+        Button bt_frescoDemo= (Button) findViewById(R.id.bt_FrescoDemo);
+        bt_frescoDemo.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +56,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.bt_LockDemo:
                 Intent lock =new Intent(MainActivity.this, LockDemo.class);
                 startActivity(lock);
+                break;
+            case R.id.bt_FrescoDemo:
+                Intent fresco=new Intent(MainActivity.this, FrescoActivity.class);
+                startActivity(fresco);
                 break;
         }
     }
