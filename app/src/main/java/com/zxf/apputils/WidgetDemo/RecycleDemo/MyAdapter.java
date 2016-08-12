@@ -28,7 +28,6 @@ public  class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.item_recycledemo,parent,false);
         MyViewHolder viewHolder=new MyViewHolder(view);
-
         return viewHolder;
     }
 
@@ -41,6 +40,16 @@ public  class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public int getItemCount() {
         return data.size();
     }
+
+    public void addItem(int pos){
+        data.add(pos,"AddItem");
+        notifyItemInserted(pos);
+    }
+    public void deleteItem(int pos){
+        data.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
 }
 class MyViewHolder extends RecyclerView.ViewHolder{
     TextView tv;
