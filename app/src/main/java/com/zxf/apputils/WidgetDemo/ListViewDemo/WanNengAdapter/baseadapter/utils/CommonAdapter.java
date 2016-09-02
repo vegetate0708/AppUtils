@@ -1,9 +1,6 @@
 package com.zxf.apputils.WidgetDemo.ListViewDemo.WanNengAdapter.baseadapter.utils;
 
 import java.util.List;
-
-
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

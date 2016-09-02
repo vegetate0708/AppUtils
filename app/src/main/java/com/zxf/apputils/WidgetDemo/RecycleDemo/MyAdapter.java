@@ -23,7 +23,14 @@ public  class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.data=data;
         inflater=LayoutInflater.from(context);
     }
-
+    public interface OnItemClickListener{
+       void OnItemClickListener(View view,int poi);
+       void OnItemLongClickListener(View view,int poi);
+    }
+    private OnItemClickListener onItemClickListener;
+    public void setItemClickListener(OnItemClickListener listener){
+        this.onItemClickListener=listener;
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.item_recycledemo,parent,false);
@@ -32,8 +39,26 @@ public  class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
           holder.tv.setText(data.get(position));
+        if (onItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int poi=holder.getLayoutPosition();
+                    onItemClickListener.OnItemClickListener(holder.itemView,poi);
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int poi=holder.getLayoutPosition();
+                    onItemClickListener.OnItemLongClickListener(holder.itemView,poi);
+                    return false;
+                }
+            });
+        }
+
     }
 
     @Override

@@ -23,15 +23,9 @@
         android:layout_below="@id/bt_IPCDemo"
         app:layout_heightPercent="10%"/>
     <Button
-        android:id="@+id/bt_recycledemo"
+        android:id="@+id/bt_widgetDemo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="recycleDEMO"
+        android:text="WidgetDemo"
         android:layout_below="@id/bt_SMSUtils"/>
-    <Button
-        android:id="@+id/bt_actionBarDemo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="actionBarDEMO"
-        android:layout_below="@id/bt_recycledemo"/>
 </android.percent.support.PercentRelativeLayout>

@@ -21,6 +21,8 @@
         <activity android:name=".IPCDemo.IPCActivity"/>
         <activity android:name=".WidgetDemo.RecycleDemo.RecycleDemo"/>
         <activity android:name=".WidgetDemo.RecycleDemo.RecycleStaggeredDemo"/>
+        <activity android:name=".WidgetDemo.WidgetDemoActivity"/>
+        <activity android:name=".WidgetDemo.Animator.AnimatorDemoActivity"/>
         <activity android:name=".WidgetDemo.ActionBarDemo.ActionBarTest"
             android:theme="@style/ActionBarDemo"
             android:logo="@mipmap/guiling"/> <!--设置标题显示的logo-->

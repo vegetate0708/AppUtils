@@ -14,6 +14,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.zxf.apputils.IPCDemo.IPCActivity;
 import com.zxf.apputils.R;
@@ -35,9 +37,21 @@ public class RecycleDemo extends ActionBarActivity {
         initDatas();
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         adapter=new MyAdapter(this,data);
+        adapter.setItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClickListener(View view, int poi) {
+                Toast.makeText(RecycleDemo.this,"OnClick"+poi,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void OnItemLongClickListener(View view, int poi) {
+                Toast.makeText(RecycleDemo.this,"OnLongClick"+poi,Toast.LENGTH_LONG).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
         //设置recycleview的布局管理
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        //设置增加删除动画效果
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //设置recycleview的分割线
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));

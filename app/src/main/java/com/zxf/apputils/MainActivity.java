@@ -11,6 +11,7 @@ import com.zxf.apputils.IPCDemo.IPCActivity;
 import com.zxf.apputils.WidgetDemo.ActionBarDemo.ActionBarTest;
 import com.zxf.apputils.WidgetDemo.RecycleDemo.RecycleDemo;
 import com.zxf.apputils.SMSAndPhoneUtils.PhoneUtils;
+import com.zxf.apputils.WidgetDemo.WidgetDemoActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -23,10 +24,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         bt_SMSUtils.setOnClickListener(this);
         Button bt_IPCDemo= (Button) findViewById(R.id.bt_IPCDemo);
         bt_IPCDemo.setOnClickListener(this);
-        Button bt_recycle= (Button) findViewById(R.id.bt_recycledemo);
+        Button bt_recycle= (Button) findViewById(R.id.bt_widgetDemo);
         bt_recycle.setOnClickListener(this);
-        Button bt_actionBar= (Button) findViewById(R.id.bt_actionBarDemo);
-        bt_actionBar.setOnClickListener(this);
     }
 
     @Override
@@ -39,13 +38,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Intent ipcdemo=new Intent(MainActivity.this, IPCActivity.class);
                 startActivity(ipcdemo);
                 break;
-            case R.id.bt_recycledemo:
-                Intent recycledemo=new Intent(MainActivity.this, RecycleDemo.class);
-                startActivity(recycledemo);
-                break;
-            case R.id.bt_actionBarDemo:
-                Intent actionBar =new Intent(MainActivity.this, ActionBarTest.class);
-                startActivity(actionBar);
+            case R.id.bt_widgetDemo:
+                Intent widgetdemo=new Intent(MainActivity.this, WidgetDemoActivity.class);
+                startActivity(widgetdemo);
                 break;
         }
     }
