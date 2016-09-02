@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="文字改变"/>
-            <TextView
+            <Button
                 android:id="@+id/bt_animator_checkCircle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
